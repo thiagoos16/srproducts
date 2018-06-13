@@ -1,7 +1,6 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/db_products');
+var db = require('../config/database');
 
-var productSchema =new mongoose.Schema({
+var productSchema = new db.Mongoose.Schema({
     businessId: { type: Number, required: true },
     name: { type: String, required:true },
     imageName: { type: String, required:true },
@@ -15,4 +14,4 @@ var productSchema =new mongoose.Schema({
 }, { collection: 'products' }
 );
 
-module.exports = {Mongoose: mongoose, ProductSchema: productSchema}
+module.exports = { ProductSchema: productSchema }
