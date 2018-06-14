@@ -14,4 +14,14 @@ var productSchema = new db.Mongoose.Schema({
 }, { collection: 'products' }
 );
 
+// var recommendationListSchema = new db.Mongoose.Schema({
+//     reference: {
+//         timestamp: Date.now,
+//         item: productSchema
+//     },
+//     recommendation: [
+//         productSchema
+//     ]    
+// });
+
 module.exports = { ProductSchema: productSchema }
