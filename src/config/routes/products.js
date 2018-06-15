@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var cors = require('cors')
 
 /*GET all products. */
-router.get('/', function (req, res, next){
+router.get('/', cors(), function (req, res, next){
     var db = require('../database');
     var schema = require('../../products/schema');
     var Products = db.Mongoose.model('products', schema.ProductSchema);
@@ -38,7 +39,7 @@ router.post('/', function(req, res, next){
 });
 
 /*GET Recommendation List*/
-router.get('/:businessId', function(req, res, next){
+router.get('/:businessId', cors(), function(req, res, next){
     var db = require('../database');
     var schema = require('../../products/schema');
     var businessId = req.params.businessId;
