@@ -53,7 +53,7 @@ function getRecomendations(businessId, db, schema, res) {
     
     Product.find({businessId: businessId}).exec(function (e, prodRef) {
         category = prodRef[0].category;
-        Product.find({category: category}).exec(function (e2, prodsRecomend){
+        Product.find({$and: [{category: category}, {businessId:{$ne: businessId}}]}).exec(function (e2, prodsRecomend){
             res.json(padronized(prodRef, prodsRecomend));
             res.end();
         });
