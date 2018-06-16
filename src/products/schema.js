@@ -6,7 +6,7 @@ var productSchema = new db.Mongoose.Schema({
     imageName: { type: String, required:true },
     detailUrl: { type: String, required:true },
     price: { type: String, required:true },
-    oldPrice: { type: String, required:true },
+    oldPrice: { type: String, required:false, default:"" },
     category: { type: String, required:true },
     productInfo: {
         paymentConditions: { type: String, required:true }      
