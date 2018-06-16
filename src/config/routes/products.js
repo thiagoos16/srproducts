@@ -51,7 +51,12 @@ function getRecomendations(businessId, db, schema, res) {
     var Product = db.Mongoose.model('products', schema.ProductSchema);
     var aux = [];
     
-    Product.find({businessId: businessId}).exec(function (e, prodRef) {
+    Product.find({businessId: businessId}).exec(function (err, prodRef) {
+        if (prodRef.length == 0) {
+            res.status('404').json({error: "Produto não possui uma lista de recomendação."});
+            res.end();
+            return;
+        }
         category = prodRef[0].category;
         Product.find({$and: [{category: category}, {businessId:{$ne: businessId}}]}).exec(function (e2, prodsRecomend){
             res.json(padronized(prodRef, prodsRecomend));
@@ -79,7 +84,5 @@ function padronized(prodRef, prodsRecomend) {
         }
     }
 } 
-
-
 
 module.exports = router;
